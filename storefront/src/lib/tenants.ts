@@ -9,7 +9,7 @@ export const DEFAULT_PUBLISHABLE_KEY =
 
 export const stores: Store[] = [
   {
-    domain: "https://storefront-production-8e2d.up.railway.app",
+    domain: "storefront-production-8e2d.up.railway.app",
     name: "Waterproof Shoes",
     publishableKey: "pk_ff1ae81b16a5762e621135f6e9123614ca3f70dc407242ecb02f269b25ca5f81",
   },
