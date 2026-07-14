@@ -310,6 +310,7 @@ The middleware also sets a cookie based on the onboarding status of a user. This
 
 - [Website](https://www.medusajs.com/)
 - [GitHub](https://github.com/medusajs)
+- multi-store setup
 - [Documentation](https://docs.medusajs.com/)
 
 ## Learn more about Next.js
