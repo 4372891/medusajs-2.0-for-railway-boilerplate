@@ -5,9 +5,11 @@ import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
+import { getStoreName } from "@lib/tenants"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
+  const storeName = await getStoreName()
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
@@ -25,7 +27,7 @@ export default async function Nav() {
               className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
               data-testid="nav-store-link"
             >
-              Medusa Store
+             {storeName}
             </LocalizedClientLink>
           </div>
 
