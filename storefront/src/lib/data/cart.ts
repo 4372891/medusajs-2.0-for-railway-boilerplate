@@ -394,5 +394,5 @@ export async function updateRegion(countryCode: string, currentPath: string) {
   revalidateTag("regions")
   revalidateTag("products")
 
-  redirect(`/${countryCode}${currentPath}`)
+  redirect(currentPath || "/")
 }
