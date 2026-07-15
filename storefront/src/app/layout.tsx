@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const storeName = await getStoreName()
 
   return {
-    metadataBase: new URL(getBaseURL()),
+    metadataBase: new URL(await getBaseURL()),
     title: {
       default: storeName,
       template: `%s | ${storeName}`,
