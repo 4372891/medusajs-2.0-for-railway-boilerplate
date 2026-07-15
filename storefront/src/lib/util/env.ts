@@ -1,15 +1,20 @@
 import { headers } from "next/headers"
 
-export const getBaseURL = async () => {
+const FALLBACK =
+  process.env.NEXT_PUBLIC_BASE_URL || "https://localhost:8000"
+
+export const getBaseURL = async (): Promise<string> => {
   try {
     const h = await headers()
-    const host = h.get("x-forwarded-host") || h.get("host") || ""
-    if (host) {
+    const host = h.get("x-forwarded-host") || h.get("host")
+
+    if (host && typeof host === "string") {
       const protocol = host.includes("localhost") ? "http" : "https"
       return `${protocol}://${host}`
     }
   } catch {
-    // falls through to the env value below
+    // during build there is no request; fall back
   }
-  return process.env.NEXT_PUBLIC_BASE_URL || "https://localhost:8000"
+
+  return FALLBACK
 }
