@@ -9,9 +9,14 @@ export const DEFAULT_PUBLISHABLE_KEY =
 
 export const stores: Store[] = [
   {
-    domain: "storefront-production-8e2d.up.railway.app",
+    domain: "birthdaysongmusic.com",
     name: "Waterproof Shoes",
     publishableKey: "pk_ff1ae81b16a5762e621135f6e9123614ca3f70dc407242ecb02f269b25ca5f81",
+  },
+  {
+    domain: "huchip.me",
+    name: "Leather Boots",
+    publishableKey: "pk_7794b35f2074fdbf7fc58f28c87315977a3b3af3f7563d36297569d4b608bcb9",
   },
 ]
 
