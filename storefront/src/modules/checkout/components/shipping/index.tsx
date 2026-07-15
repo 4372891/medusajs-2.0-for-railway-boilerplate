@@ -27,7 +27,7 @@ const Shipping: React.FC<ShippingProps> = ({
 
   const searchParams = useSearchParams()
   const router = useRouter()
-  const pathname = usePathname()
+  const pathname = usePathname().replace(/^\/[a-z]{2}(?=\/|$)/, "")
 
   const isOpen = searchParams.get("step") === "delivery"
 
