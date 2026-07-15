@@ -146,13 +146,23 @@ const medusaConfig = {
           products: {
             type: 'products',
             enabled: true,
-            fields: ['id', 'title', 'description', 'handle', 'variant_sku', 'thumbnail'],
+            fields: ['id', 'title', 'description', 'handle', 'variant_sku', 'thumbnail', 'sales_channels.id'],
             indexSettings: {
               searchableAttributes: ['title', 'description', 'variant_sku'],
-              displayedAttributes: ['id', 'handle', 'title', 'description', 'variant_sku', 'thumbnail'],
-              filterableAttributes: ['id', 'handle'],
+              displayedAttributes: ['id', 'handle', 'title', 'description', 'variant_sku', 'thumbnail', 'sales_channel_ids'],
+              filterableAttributes: ['id', 'handle', 'sales_channel_ids'],
             },
             primaryKey: 'id',
+            transformer: (product) => ({
+              id: product.id,
+              title: product.title,
+              description: product.description,
+              handle: product.handle,
+              variant_sku: product.variants?.map((v) => v.sku).filter(Boolean),
+              thumbnail: product.thumbnail,
+              sales_channel_ids:
+                product.sales_channels?.map((sc) => sc.id) || [],
+            }),
           }
         }
       }
