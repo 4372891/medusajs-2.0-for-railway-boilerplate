@@ -1,4 +1,4 @@
-import { getStoreName } from "@lib/tenants"
+import { getStoreName, getCurrentStoreData } from "@lib/tenants"
 import { getCollectionsList } from "@lib/data/collections"
 import { Text, clx } from "@medusajs/ui"
 
