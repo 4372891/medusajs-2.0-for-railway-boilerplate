@@ -5,7 +5,11 @@ import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  description: "Browse our products.",
+  description:
+    "Shop our full collection. Quality products, fast worldwide shipping, and secure checkout.",
+  alternates: {
+    canonical: "/",
+  },
 }
 
 export default async function Home({
