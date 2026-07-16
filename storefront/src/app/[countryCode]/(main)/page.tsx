@@ -26,19 +26,25 @@ export default async function Home({ searchParams, params }: Props) {
 
   return (
     <>
-      {(store.heroHeading || store.introText) && (
-        <div className="content-container pt-8 pb-4">
+      <StoreTemplate sortBy={sortBy} page={page} countryCode={countryCode} />
+
+      {(store.heroHeading || store.introText || store.footerText) && (
+        <section className="content-container py-12 border-t border-ui-border-base">
           {store.heroHeading && (
-            <h1 className="text-2xl-semi mb-2">{store.heroHeading}</h1>
+            <h1 className="text-2xl-semi mb-4">{store.heroHeading}</h1>
           )}
           {store.introText && (
-            <p className="text-base-regular text-ui-fg-subtle max-w-3xl">
+            <p className="text-base-regular text-ui-fg-subtle max-w-3xl mb-6">
               {store.introText}
             </p>
           )}
-        </div>
+          {store.footerText && (
+            <p className="text-small-regular text-ui-fg-subtle max-w-4xl whitespace-pre-line">
+              {store.footerText}
+            </p>
+          )}
+        </section>
       )}
-      <StoreTemplate sortBy={sortBy} page={page} countryCode={countryCode} />
     </>
   )
 }
