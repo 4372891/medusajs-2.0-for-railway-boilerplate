@@ -12,7 +12,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static pages every store has
   const entries: MetadataRoute.Sitemap = [
     { url: `${base}/`, changeFrequency: "daily", priority: 1 },
-    { url: `${base}/store`, changeFrequency: "daily", priority: 0.8 },
   ]
 
   // This store's products (scoped by domain via the publishable key)
