@@ -1,37 +1,31 @@
 import { Metadata } from "next"
 
-import FeaturedProducts from "@modules/home/components/featured-products"
-import { getCollectionsWithProducts } from "@lib/data/collections"
-import { getRegion } from "@lib/data/regions"
+import StoreTemplate from "@modules/store/templates"
+import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import { getStoreName } from "@lib/tenants"
 
-export const metadata: Metadata = {
-  description:
-    "Shop our full collection. Quality products, fast worldwide shipping, and secure checkout.",
-  alternates: {
-    canonical: "/",
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const storeName = await getStoreName()
+  return {
+    description: `Shop ${storeName}. Fast worldwide shipping and secure checkout.`,
+    alternates: { canonical: "/" },
+  }
 }
 
-export default async function Home({
-  params,
-}: {
+type Props = {
+  searchParams: Promise<{ sortBy?: SortOptions; page?: string }>
   params: Promise<{ countryCode: string }>
-}) {
-  const { countryCode } = await params
-  const collections = await getCollectionsWithProducts(countryCode)
-  const region = await getRegion(countryCode)
+}
 
-  if (!collections || !region) {
-    return null
-  }
+export default async function Home({ searchParams, params }: Props) {
+  const { countryCode } = await params
+  const { sortBy, page } = await searchParams
 
   return (
-    <>
-      <div className="pb-12">
-        <ul className="flex flex-col gap-x-6">
-          <FeaturedProducts collections={collections} region={region} />
-        </ul>
-      </div>
-    </>
+    <StoreTemplate
+      sortBy={sortBy}
+      page={page}
+      countryCode={countryCode}
+    />
   )
 }
