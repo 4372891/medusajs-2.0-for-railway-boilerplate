@@ -2,12 +2,14 @@ import { Metadata } from "next"
 
 import StoreTemplate from "@modules/store/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
-import { getStoreName } from "@lib/tenants"
+import { getCurrentStoreData } from "@lib/tenants"
 
 export async function generateMetadata(): Promise<Metadata> {
-  const storeName = await getStoreName()
+  const store = await getCurrentStoreData()
   return {
-    description: `Shop ${storeName}. Fast worldwide shipping and secure checkout.`,
+    title: store.seoTitle || store.name,
+    description:
+      store.seoDescription || `Shop ${store.name}. Worldwide shipping and secure checkout.`,
     alternates: { canonical: "/" },
   }
 }
@@ -20,12 +22,23 @@ type Props = {
 export default async function Home({ searchParams, params }: Props) {
   const { countryCode } = await params
   const { sortBy, page } = await searchParams
+  const store = await getCurrentStoreData()
 
   return (
-    <StoreTemplate
-      sortBy={sortBy}
-      page={page}
-      countryCode={countryCode}
-    />
+    <>
+      {(store.heroHeading || store.introText) && (
+        <div className="content-container pt-8 pb-4">
+          {store.heroHeading && (
+            <h1 className="text-2xl-semi mb-2">{store.heroHeading}</h1>
+          )}
+          {store.introText && (
+            <p className="text-base-regular text-ui-fg-subtle max-w-3xl">
+              {store.introText}
+            </p>
+          )}
+        </div>
+      )}
+      <StoreTemplate sortBy={sortBy} page={page} countryCode={countryCode} />
+    </>
   )
 }
