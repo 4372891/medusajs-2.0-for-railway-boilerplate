@@ -29,11 +29,12 @@ const SortProducts = ({
   return (
     <div>
       {/* Mobile: compact dropdown */}
-      <div className="small:hidden w-full">
+      <div className="small:hidden w-full max-w-[220px]">
         <NativeSelect
           value={sortBy}
           onChange={(e) => handleChange(e.target.value as SortOptions)}
           data-testid={dataTestId}
+          className="!py-1 text-sm"
         >
           {sortOptions.map((o) => (
             <option key={o.value} value={o.value}>
