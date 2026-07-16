@@ -1,7 +1,8 @@
 "use client"
 
+import { clx } from "@medusajs/ui"
+
 import FilterRadioGroup from "@modules/common/components/filter-radio-group"
-import NativeSelect from "@modules/common/components/native-select"
 
 export type SortOptions = "price_asc" | "price_desc" | "created_at"
 
@@ -17,6 +18,13 @@ const sortOptions = [
   { value: "price_desc", label: "Price: High -> Low" },
 ]
 
+// Shorter labels for the compact mobile pills
+const mobileOptions = [
+  { value: "created_at", label: "Latest" },
+  { value: "price_asc", label: "Price ↑" },
+  { value: "price_desc", label: "Price ↓" },
+]
+
 const SortProducts = ({
   "data-testid": dataTestId,
   sortBy,
@@ -27,21 +35,24 @@ const SortProducts = ({
   }
 
   return (
-    <div>
-      {/* Mobile: compact dropdown */}
-      <div className="small:hidden w-full max-w-[220px]">
-        <NativeSelect
-          value={sortBy}
-          onChange={(e) => handleChange(e.target.value as SortOptions)}
-          data-testid={dataTestId}
-          className="!py-1 text-sm"
-        >
-          {sortOptions.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
-          ))}
-        </NativeSelect>
+    <div className="w-full">
+      {/* Mobile: horizontal pill buttons */}
+      <div className="small:hidden flex items-center gap-2 flex-wrap">
+        <span className="text-ui-fg-subtle text-sm mr-1">Sort by:</span>
+        {mobileOptions.map((o) => (
+          <button
+            key={o.value}
+            onClick={() => handleChange(o.value as SortOptions)}
+            className={clx(
+              "px-3 py-1.5 rounded-md border text-sm transition-colors",
+              o.value === sortBy
+                ? "border-ui-fg-base text-ui-fg-base font-medium"
+                : "border-ui-border-base text-ui-fg-subtle hover:text-ui-fg-base"
+            )}
+          >
+            {o.label}
+          </button>
+        ))}
       </div>
 
       {/* Desktop: the vertical radio list (unchanged) */}
