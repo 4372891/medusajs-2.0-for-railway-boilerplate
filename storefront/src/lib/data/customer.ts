@@ -58,10 +58,11 @@ export async function signup(_currentState: unknown, formData: FormData) {
     setAuthToken(typeof loginToken === 'string' ? loginToken : loginToken.location)
 
     revalidateTag("customer")
-    return createdCustomer
   } catch (error: any) {
     return error.toString()
   }
+
+  redirect("/account")
 }
 
 export async function login(_currentState: unknown, formData: FormData) {
