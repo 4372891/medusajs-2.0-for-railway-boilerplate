@@ -24,12 +24,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound()
   }
 
+  // Use the product's real description; fall back to a title-based line.
+  const description =
+    product.description ||
+    product.subtitle ||
+    `${product.title} — available now.`
+
   return {
-    title: `${product.title} `,
-    description: `${product.title}`,
+    title: `${product.title}`,
+    description,
+    alternates: {
+      canonical: `/products/${handle}`,
+    },
     openGraph: {
-      title: `${product.title} `,
-      description: `${product.title}`,
+      title: `${product.title}`,
+      description,
+      type: "website",
+      images: product.thumbnail ? [product.thumbnail] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.title}`,
+      description,
       images: product.thumbnail ? [product.thumbnail] : [],
     },
   }
