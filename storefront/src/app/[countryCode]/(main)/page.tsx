@@ -28,7 +28,7 @@ export default async function Home({ searchParams, params }: Props) {
     <>
       <StoreTemplate sortBy={sortBy} page={page} countryCode={countryCode} />
 
-      {(store.heroHeading || store.introText || store.footerText) && (
+      {(store.heroHeading || store.introText) && (
         <section className="content-container py-12 border-t border-ui-border-base">
           {store.heroHeading && (
             <h1 className="text-2xl-semi mb-4">{store.heroHeading}</h1>
@@ -36,11 +36,6 @@ export default async function Home({ searchParams, params }: Props) {
           {store.introText && (
             <p className="text-base-regular text-ui-fg-subtle max-w-3xl mb-6">
               {store.introText}
-            </p>
-          )}
-          {store.footerText && (
-            <p className="text-small-regular text-ui-fg-subtle max-w-4xl whitespace-pre-line">
-              {store.footerText}
             </p>
           )}
         </section>
