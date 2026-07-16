@@ -8,10 +8,18 @@ import MedusaCTA from "@modules/layout/components/medusa-cta"
 export default async function Footer() {
   const { collections } = await getCollectionsList(0, 6)
   const storeName = await getStoreName()
+  const store = await getCurrentStoreData()
 
   return (
     <footer className="border-t border-ui-border-base w-full">
       <div className="content-container flex flex-col w-full">
+        {store.footerText && (
+          <div className="py-12 border-b border-ui-border-base">
+            <p className="text-small-regular text-ui-fg-subtle max-w-4xl whitespace-pre-line">
+              {store.footerText}
+            </p>
+          </div>
+        )}
         <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
           <div>
             <LocalizedClientLink
