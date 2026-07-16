@@ -38,7 +38,7 @@ const SortProducts = ({
     <div className="w-full">
       {/* Mobile: horizontal pill buttons */}
       <div className="small:hidden flex items-center gap-2 w-full">
-        <span className="text-ui-fg-subtle text-sm mr-1">Sort by:</span>
+        <span className="text-ui-fg-subtle text-sm mr-1 whitespace-nowrap">Sort by:</span>
         {mobileOptions.map((o) => (
           <button
             key={o.value}
