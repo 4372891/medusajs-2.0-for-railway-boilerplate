@@ -1,6 +1,7 @@
 "use client"
 
 import FilterRadioGroup from "@modules/common/components/filter-radio-group"
+import NativeSelect from "@modules/common/components/native-select"
 
 export type SortOptions = "price_asc" | "price_desc" | "created_at"
 
@@ -11,18 +12,9 @@ type SortProductsProps = {
 }
 
 const sortOptions = [
-  {
-    value: "created_at",
-    label: "Latest Arrivals",
-  },
-  {
-    value: "price_asc",
-    label: "Price: Low -> High",
-  },
-  {
-    value: "price_desc",
-    label: "Price: High -> Low",
-  },
+  { value: "created_at", label: "Latest Arrivals" },
+  { value: "price_asc", label: "Price: Low -> High" },
+  { value: "price_desc", label: "Price: High -> Low" },
 ]
 
 const SortProducts = ({
@@ -35,13 +27,33 @@ const SortProducts = ({
   }
 
   return (
-    <FilterRadioGroup
-      title="Sort by"
-      items={sortOptions}
-      value={sortBy}
-      handleChange={handleChange}
-      data-testid={dataTestId}
-    />
+    <div>
+      {/* Mobile: compact dropdown */}
+      <div className="small:hidden w-full">
+        <NativeSelect
+          value={sortBy}
+          onChange={(e) => handleChange(e.target.value as SortOptions)}
+          data-testid={dataTestId}
+        >
+          {sortOptions.map((o) => (
+            <option key={o.value} value={o.value}>
+              {o.label}
+            </option>
+          ))}
+        </NativeSelect>
+      </div>
+
+      {/* Desktop: the vertical radio list (unchanged) */}
+      <div className="hidden small:block">
+        <FilterRadioGroup
+          title="Sort by"
+          items={sortOptions}
+          value={sortBy}
+          handleChange={handleChange}
+          data-testid={dataTestId}
+        />
+      </div>
+    </div>
   )
 }
 
