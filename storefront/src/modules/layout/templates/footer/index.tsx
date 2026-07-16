@@ -13,21 +13,19 @@ export default async function Footer() {
   return (
     <footer className="border-t border-ui-border-base w-full">
       <div className="content-container flex flex-col w-full">
-        {store.footerText && (
-          <div className="py-12 border-b border-ui-border-base">
-            <p className="text-small-regular text-ui-fg-subtle max-w-4xl whitespace-pre-line">
-              {store.footerText}
-            </p>
-          </div>
-        )}
         <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
-          <div>
+          <div className="flex flex-col gap-y-4 max-w-md">
             <LocalizedClientLink
               href="/"
               className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
             >
               {storeName}
             </LocalizedClientLink>
+            {store.footerText && (
+              <p className="text-small-regular text-ui-fg-subtle whitespace-pre-line">
+                {store.footerText}
+              </p>
+            )}
           </div>
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
             {collections && collections.length > 0 && (
