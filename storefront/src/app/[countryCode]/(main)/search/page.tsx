@@ -1,5 +1,5 @@
-import SearchModal from "@modules/search/templates/search-modal"
+import { redirect } from "next/navigation"
 
-export default function SearchModalRoute() {
-  return <SearchModal />
+export default function SearchPage() {
+  redirect("/store")
 }
