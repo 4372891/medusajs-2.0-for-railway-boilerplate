@@ -44,7 +44,7 @@ const SortProducts = ({
             key={o.value}
             onClick={() => handleChange(o.value as SortOptions)}
             className={clx(
-              "px-3 py-1.5 rounded-md border text-sm transition-colors",
+              "px-3 py-1.5 rounded-md border text-sm transition-colors whitespace-nowrap",
               o.value === sortBy
                 ? "border-ui-fg-base text-ui-fg-base font-medium"
                 : "border-ui-border-base text-ui-fg-subtle hover:text-ui-fg-base"
