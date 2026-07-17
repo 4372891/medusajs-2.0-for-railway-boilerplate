@@ -49,7 +49,7 @@ export default async function Nav() {
                 href="/account"
                 data-testid="nav-account-link"
               >
-                Account
+                {customer?.first_name ? `Hi, ${customer.first_name}` : "Account"}
               </LocalizedClientLink>
             </div>
             <Suspense
