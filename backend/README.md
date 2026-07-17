@@ -12,7 +12,7 @@ Video instructions: https://youtu.be/PPxenu7IjGM
 - **postgres database** (Automatic setup when using the Railway template)
 - **redis** (Automatic setup when using the Railway template) - fallback to simulated redis.
 - **MinIO storage** (Automatic setup when using the Railway template) - fallback to local storage.
-- **Meilisearch** (Automatic setup when using the Railway template)
+- **Meilisearch** (Automatic setup when using the Railway template).
 
 ### commands
 
