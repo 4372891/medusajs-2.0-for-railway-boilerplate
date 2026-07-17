@@ -12,6 +12,7 @@ export default async function orderPlacedHandler({
 
   const order = await orderModuleService.retrieveOrder(data.id, { relations: ['items', 'summary', 'shipping_address'] })
   const shippingAddress = await (orderModuleService as any).orderAddressService_.retrieve(order.shipping_address.id)
+  console.log('ORDER-PLACED v2 running. sales_channel_id:', (order as any).sales_channel_id)
 
   // Look up the store (sales channel) name via the query graph — no typed import needed.
   let fromName: string | null = null
