@@ -36,7 +36,7 @@ export const stores: Store[] = [
       "Shop genuine and faux leather boots plus leather sandals. Handcrafted quality, worldwide shipping, secure checkout. Find your pair today.",
     heroHeading: "Leather Boots & Sandals, Built to Last",
     introText:
-      "Medusa now ships time-based one-time password (TOTP) multi-factor authentication as part of the core Auth Module.",
+      "Medusa now ships time-based one-time password (TOTP) multi-factor authentication as part of the core Auth Module.Medusa now ships time-based one-time password (TOTP) multi-factor authentication as part of the core Auth Module.Medusa now ships time-based one-time password (TOTP) multi-factor authentication as part of the core Auth Module.Medusa now ships time-based one-time password (TOTP) multi-factor authentication as part of the core Auth Module.Medusa now ships time-based one-time password (TOTP) multi-factor authentication as part of the core Auth Module.Medusa now ships time-based one-time password (TOTP) multi-factor authentication as part of the core Auth Module.Medusa now ships time-based one-time password (TOTP) multi-factor authentication as part of the core Auth Module.Medusa now ships time-based one-time password (TOTP) multi-factor authentication as part of the core Auth Module.Medusa now ships time-based one-time password (TOTP) multi-factor authentication as part of the core Auth Module.Medusa now ships time-based one-time password (TOTP) multi-factor authentication as part of the core Auth Module.",
     footerText:
       "Write ~300 words here about your leather boots range. Talk styles, leather types, care, occasions. Natural keywords, no stuffing.",
   },
