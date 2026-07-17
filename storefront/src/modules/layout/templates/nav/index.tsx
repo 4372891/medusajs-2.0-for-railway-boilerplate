@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-
+import { getCustomer } from "@lib/data/customer"
 import { listRegions } from "@lib/data/regions"
 import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
@@ -10,6 +10,7 @@ import { getStoreName } from "@lib/tenants"
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
   const storeName = await getStoreName()
+  const customer = await getCustomer().catch(() => null)
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
