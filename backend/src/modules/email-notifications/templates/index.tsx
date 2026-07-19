@@ -2,10 +2,12 @@ import { ReactNode } from 'react'
 import { MedusaError } from '@medusajs/framework/utils'
 import { InviteUserEmail, INVITE_USER, isInviteUserData } from './invite-user'
 import { OrderPlacedTemplate, ORDER_PLACED, isOrderPlacedTemplateData } from './order-placed'
+import { ContactReceivedTemplate, CONTACT_RECEIVED, isContactReceivedData } from './contact'
 
 export const EmailTemplates = {
   INVITE_USER,
-  ORDER_PLACED
+  ORDER_PLACED,
+  CONTACT_RECEIVED
 } as const
 
 export type EmailTemplateType = keyof typeof EmailTemplates
