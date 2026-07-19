@@ -32,6 +32,15 @@ export function generateEmailTemplate(templateKey: string, data: unknown): React
       }
       return <OrderPlacedTemplate {...data} />
 
+    case EmailTemplates.CONTACT_RECEIVED:
+      if (!isContactReceivedData(data)) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA,
+          `Invalid data for template "${EmailTemplates.CONTACT_RECEIVED}"`
+        )
+      }
+      return <ContactReceivedTemplate {...data} />
+
     default:
       throw new MedusaError(
         MedusaError.Types.INVALID_DATA,
@@ -40,4 +49,4 @@ export function generateEmailTemplate(templateKey: string, data: unknown): React
   }
 }
 
-export { InviteUserEmail, OrderPlacedTemplate }
+export { InviteUserEmail, OrderPlacedTemplate, ContactReceivedTemplate }
