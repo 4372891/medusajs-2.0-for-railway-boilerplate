@@ -11,22 +11,41 @@ type ProductTabsProps = {
   product: HttpTypes.StoreProduct
 }
 
+/**
+ * Specs are stored in the product's "subtitle" field as:
+ *   Key: Value | Key: Value | Key: Value
+ * e.g. "Formulation: Cream | Finish: Matte | Use: Daily"
+ */
+const parseSpecs = (subtitle?: string | null) => {
+  if (!subtitle) {
+    return []
+  }
+
+  return subtitle
+    .split("|")
+    .map((part) => {
+      const [label, ...rest] = part.split(":")
+      const value = rest.join(":").trim()
+
+      if (!label || !value) {
+        return null
+      }
+
+      return { label: label.trim(), value }
+    })
+    .filter(Boolean) as { label: string; value: string }[]
+}
+
 const ProductTabs = ({ product }: ProductTabsProps) => {
-  const hasDimensions = !!(product.length && product.width && product.height)
-  const hasInfo = !!(
-    product.material ||
-    product.origin_country ||
-    product.type ||
-    product.weight ||
-    hasDimensions
-  )
+  const specs = parseSpecs(product.subtitle)
 
   const tabs = [
-    ...(hasInfo
+    // Only show the specs tab when the product actually has specs.
+    ...(specs.length
       ? [
           {
             label: "Product Information",
-            component: <ProductInfoTab product={product} />,
+            component: <ProductInfoTab specs={specs} />,
           },
         ]
       : []),
@@ -54,29 +73,18 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   )
 }
 
-const ProductInfoTab = ({ product }: ProductTabsProps) => {
-  const hasDimensions = !!(product.length && product.width && product.height)
-
-  const rows = [
-    { label: "Material", value: product.material },
-    { label: "Country of origin", value: product.origin_country },
-    { label: "Type", value: product.type ? product.type.value : null },
-    { label: "Weight", value: product.weight ? `${product.weight} g` : null },
-    {
-      label: "Dimensions",
-      value: hasDimensions
-        ? `${product.length}L x ${product.width}W x ${product.height}H`
-        : null,
-    },
-  ].filter((row) => !!row.value)
-
+const ProductInfoTab = ({
+  specs,
+}: {
+  specs: { label: string; value: string }[]
+}) => {
   return (
     <div className="text-small-regular py-8">
-      <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-        {rows.map((row) => (
-          <div key={row.label}>
-            <span className="font-semibold">{row.label}</span>
-            <p>{row.value}</p>
+      <div className="grid grid-cols-1 small:grid-cols-2 gap-x-8 gap-y-4">
+        {specs.map((spec) => (
+          <div key={spec.label}>
+            <span className="font-semibold">{spec.label}</span>
+            <p>{spec.value}</p>
           </div>
         ))}
       </div>
@@ -91,20 +99,18 @@ const ShippingInfoTab = () => {
         <div className="flex items-start gap-x-2">
           <FastDelivery />
           <div>
-            <span className="font-semibold">Fast delivery</span>
+            <span className="font-semibold">Fast Delivery</span>
             <p className="max-w-sm">
-              Your package will arrive in approximately 7 business days in the comfort of your home.
+              Worldwide shipping. Your package will arrive in 7-10 business days in the comfort of your home.
             </p>
           </div>
-        </div>
+        </div>  
         <div className="flex items-start gap-x-2">
           <Back />
           <div>
-            <span className="font-semibold">Easy returns</span>
+            <span className="font-semibold">Easy Returns</span>
             <p className="max-w-sm">
-              Just return your product and we&apos;ll refund your money. No
-              questions asked – we&apos;ll do our best to make sure your return
-              is hassle-free.
+              Just return your product and we'll refund your money. No questions asked – we'll do our best to make sure your return is hassle-free.
             </p>
           </div>
         </div>
