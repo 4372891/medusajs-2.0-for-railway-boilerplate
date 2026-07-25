@@ -93,18 +93,7 @@ const ShippingInfoTab = () => {
           <div>
             <span className="font-semibold">Fast delivery</span>
             <p className="max-w-sm">
-              Your package will arrive in 3-5 business days at your pick up
-              location or in the comfort of your home.
-            </p>
-          </div>
-        </div>
-        <div className="flex items-start gap-x-2">
-          <Refresh />
-          <div>
-            <span className="font-semibold">Simple exchanges</span>
-            <p className="max-w-sm">
-              Is the fit not quite right? No worries - we&apos;ll exchange your
-              product for a new one.
+              Your package will arrive in approximately 7 business days in the comfort of your home.
             </p>
           </div>
         </div>
