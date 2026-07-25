@@ -5,7 +5,7 @@ import NativeSelect, {
 } from "@modules/common/components/native-select"
 import { HttpTypes } from "@medusajs/types"
 
-const CountrySelect = forwardRef
+const CountrySelect = forwardRef<
   HTMLSelectElement,
   NativeSelectProps & {
     region?: HttpTypes.StoreRegion
@@ -23,12 +23,10 @@ const CountrySelect = forwardRef
       return []
     }
 
-    return region.countries
-      ?.map((country) => ({
-        value: country.iso_2,
-        label: country.display_name,
-      }))
-      .sort((a, b) => (a.label ?? "").localeCompare(b.label ?? ""))
+    return region.countries?.map((country) => ({
+      value: country.iso_2,
+      label: country.display_name,
+    })).sort((a, b) => (a.label || "").localeCompare(b.label || ""))
   }, [region])
 
   return (
