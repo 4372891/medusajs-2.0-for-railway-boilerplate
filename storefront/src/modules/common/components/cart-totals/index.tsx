@@ -4,6 +4,7 @@ import { convertToLocale } from "@lib/util/money"
 import { InformationCircleSolid } from "@medusajs/icons"
 import { Tooltip } from "@medusajs/ui"
 import React from "react"
+import CurrencyNote from "@modules/common/components/currency-note"
 
 type CartTotalsProps = {
   totals: {
@@ -90,6 +91,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
         </span>
       </div>
       <div className="h-px w-full border-b border-gray-200 mt-4" />
+      <CurrencyNote amount={(total ?? 0) / 100} currencyCode={currency_code} />
     </div>
   )
 }
