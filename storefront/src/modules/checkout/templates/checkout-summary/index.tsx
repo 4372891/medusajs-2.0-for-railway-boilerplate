@@ -4,6 +4,7 @@ import ItemsPreviewTemplate from "@modules/cart/templates/preview"
 import DiscountCode from "@modules/checkout/components/discount-code"
 import CartTotals from "@modules/common/components/cart-totals"
 import Divider from "@modules/common/components/divider"
+import CurrencyNote from "@modules/common/components/currency-note"
 
 const CheckoutSummary = ({ cart }: { cart: any }) => {
   return (
@@ -20,6 +21,11 @@ const CheckoutSummary = ({ cart }: { cart: any }) => {
         <ItemsPreviewTemplate items={cart?.items} />
         <Divider className="my-6" />
         <CartTotals totals={cart} />
+        <CurrencyNote
+          amount={cart?.total ?? 0}
+          currencyCode={cart?.currency_code}
+          countryCode={cart?.shipping_address?.country_code}
+        />
         <div className="my-6">
           <DiscountCode cart={cart} />
         </div>
