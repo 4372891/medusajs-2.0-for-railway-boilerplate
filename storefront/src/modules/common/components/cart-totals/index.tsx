@@ -91,7 +91,6 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
         </span>
       </div>
       <div className="h-px w-full border-b border-gray-200 mt-4" />
-      <CurrencyNote amount={(total ?? 0) / 100} currencyCode={currency_code} />
     </div>
   )
 }
