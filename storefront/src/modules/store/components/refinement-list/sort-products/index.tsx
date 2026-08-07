@@ -1,8 +1,6 @@
 "use client"
 
-import { clx } from "@medusajs/ui"
-
-import FilterRadioGroup from "@modules/common/components/filter-radio-group"
+import { ChevronUpDown } from "@medusajs/icons"
 
 export type SortOptions = "price_asc" | "price_desc" | "created_at"
 
@@ -13,16 +11,9 @@ type SortProductsProps = {
 }
 
 const sortOptions = [
-  { value: "created_at", label: "Latest Arrivals" },
-  { value: "price_asc", label: "Price: Low -> High" },
-  { value: "price_desc", label: "Price: High -> Low" },
-]
-
-// Shorter labels for the compact mobile pills
-const mobileOptions = [
-  { value: "created_at", label: "Latest" },
-  { value: "price_asc", label: "Price ↑" },
-  { value: "price_desc", label: "Price ↓" },
+  { value: "created_at", label: "Latest arrivals" },
+  { value: "price_asc", label: "Price: low to high" },
+  { value: "price_desc", label: "Price: high to low" },
 ]
 
 const SortProducts = ({
@@ -30,41 +21,26 @@ const SortProducts = ({
   sortBy,
   setQueryParams,
 }: SortProductsProps) => {
-  const handleChange = (value: SortOptions) => {
-    setQueryParams("sortBy", value)
-  }
-
   return (
-    <div className="w-full">
-      {/* Mobile: horizontal pill buttons */}
-      <div className="small:hidden flex items-center gap-2 w-full">
-        <span className="hidden text-ui-fg-subtle text-sm mr-1 whitespace-nowrap">Sort by:</span>
-        {mobileOptions.map((o) => (
-          <button
-            key={o.value}
-            onClick={() => handleChange(o.value as SortOptions)}
-            className={clx(
-              "px-3 py-1.5 rounded-md border text-sm transition-colors whitespace-nowrap",
-              o.value === sortBy
-                ? "border-ui-fg-base text-ui-fg-base font-medium"
-                : "border-ui-border-base text-ui-fg-subtle hover:text-ui-fg-base"
-            )}
-          >
+    <div
+      className="relative inline-flex items-center h-9 border border-ui-border-base rounded-full transition-colors hover:border-ui-fg-base focus-within:border-ui-fg-base"
+      data-testid={dataTestId}
+    >
+      <select
+        value={sortBy}
+        onChange={(e) => setQueryParams("sortBy", e.target.value as SortOptions)}
+        aria-label="Sort products"
+        className="appearance-none bg-transparent border-none outline-none cursor-pointer pl-4 pr-9 text-small-regular text-ui-fg-base"
+      >
+        {sortOptions.map((o) => (
+          <option key={o.value} value={o.value}>
             {o.label}
-          </button>
+          </option>
         ))}
-      </div>
-
-      {/* Desktop: the vertical radio list (unchanged) */}
-      <div className="hidden small:block">
-        <FilterRadioGroup
-          title="Sort by"
-          items={sortOptions}
-          value={sortBy}
-          handleChange={handleChange}
-          data-testid={dataTestId}
-        />
-      </div>
+      </select>
+      <span className="absolute right-3 inset-y-0 flex items-center pointer-events-none text-ui-fg-muted">
+        <ChevronUpDown />
+      </span>
     </div>
   )
 }
