@@ -11,13 +11,13 @@ export default async function Footer() {
   const store = await getCurrentStoreData()
 
   return (
-    <footer className="border-t border-ui-border-base w-full">
+    <footer className="bg-grey-10 w-full">
       <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
+        <div className="flex flex-col gap-y-12 xsmall:flex-row items-start justify-between py-16 small:py-26">
           <div className="flex flex-col gap-y-4 max-w-md">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+              className="text-xl font-medium hover:opacity-70 transition-opacity"
             >
               {storeName}
             </LocalizedClientLink>
@@ -27,15 +27,15 @@ export default async function Footer() {
               </p>
             )}
           </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
+          <div className="text-small-regular gap-y-10 gap-x-12 md:gap-x-20 grid grid-cols-2 sm:grid-cols-3">
             {collections && collections.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
+              <div className="flex flex-col gap-y-3">
+                <span className="txt-small-plus text-ui-fg-base">
                   Collections
                 </span>
                 <ul
                   className={clx(
-                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
+                    "grid grid-cols-1 gap-y-3 text-ui-fg-subtle txt-small",
                     {
                       "grid-cols-2": (collections?.length || 0) > 3,
                     }
@@ -54,9 +54,9 @@ export default async function Footer() {
                 </ul>
               </div>
             )}
-            <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">Information</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
+            <div className="flex flex-col gap-y-3">
+              <span className="txt-small-plus text-ui-fg-base">Information</span>
+              <ul className="grid grid-cols-1 gap-y-3 text-ui-fg-subtle txt-small">
                 <li>
                   <LocalizedClientLink href="/terms" className="hover:text-ui-fg-base">
                     Terms & Conditions
@@ -81,7 +81,7 @@ export default async function Footer() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-y-2 small:flex-row small:gap-y-0 w-full mb-16 justify-between text-ui-fg-muted">
+        <div className="flex flex-col gap-y-2 small:flex-row small:gap-y-0 w-full pb-10 justify-between text-ui-fg-muted">
           <Text className="txt-compact-small">
             © {new Date().getFullYear()} {storeName}. All rights reserved.
           </Text>

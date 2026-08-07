@@ -3,8 +3,8 @@ import SkeletonProductPreview from "@modules/skeletons/components/skeleton-produ
 
 const SkeletonProductGrid = () => {
   return (
-    <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8 flex-1" data-testid="products-list-loader">
-      {repeat(8).map((index) => (
+    <ul className="grid grid-cols-2 small:grid-cols-3 gap-x-6 small:gap-x-12 gap-y-10 small:gap-y-16 flex-1" data-testid="products-list-loader">
+      {repeat(9).map((index) => (
         <li key={index}>
           <SkeletonProductPreview />
         </li>

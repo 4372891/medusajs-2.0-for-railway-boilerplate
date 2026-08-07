@@ -46,6 +46,11 @@ module.exports = {
       maxWidth: {
         "8xl": "100rem",
       },
+      spacing: {
+        18: "4.5rem",
+        21: "5.25rem",
+        26: "6.5rem",
+      },
       screens: {
         "2xsmall": "320px",
         xsmall: "512px",
@@ -60,6 +65,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
+          "var(--font-mona-sans)",
           "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
