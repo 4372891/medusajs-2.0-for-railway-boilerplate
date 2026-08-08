@@ -26,36 +26,42 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
     return notFound()
   }
 
+  const images = product?.images || []
+
   return (
     <>
       <div
-        className="content-container flex flex-col small:flex-row small:items-start py-6 relative"
+        className="content-container py-8 small:py-16"
         data-testid="product-container"
       >
-        <div className="order-3 small:order-none flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
-          <ProductInfo product={product} />
-          <ProductTabs product={product} />
-        </div>
-        <div className="order-1 small:order-none block w-full relative">
-          <ImageGallery images={product?.images || []} />
-        </div>
-        <div className="order-2 small:order-none flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-12">
-          <ProductOnboardingCta />
-          <Suspense
-            fallback={
-              <ProductActions
-                disabled={true}
-                product={product}
-                region={region}
-              />
-            }
-          >
-            <ProductActionsWrapper id={product.id} region={region} />
-          </Suspense>
+        <div className="flex flex-col small:flex-row gap-10 small:gap-12 medium:gap-20">
+          <div className="w-full small:w-1/2 flex-1">
+            <ImageGallery images={images} />
+          </div>
+
+          <div className="w-full small:w-1/2 flex-1">
+            <div className="small:sticky small:top-28 flex flex-col gap-y-8 small:max-w-md">
+              <ProductInfo product={product} />
+              <ProductOnboardingCta />
+              <Suspense
+                fallback={
+                  <ProductActions
+                    disabled={true}
+                    product={product}
+                    region={region}
+                  />
+                }
+              >
+                <ProductActionsWrapper id={product.id} region={region} />
+              </Suspense>
+              <ProductTabs product={product} />
+            </div>
+          </div>
         </div>
       </div>
+
       <div
-        className="content-container my-16 small:my-32"
+        className="content-container mb-16 small:mb-26"
         data-testid="related-products-container"
       >
         <Suspense fallback={<SkeletonRelatedProducts />}>
