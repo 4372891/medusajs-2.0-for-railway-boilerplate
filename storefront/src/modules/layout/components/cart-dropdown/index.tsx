@@ -11,6 +11,7 @@ import DeleteButton from "@modules/common/components/delete-button"
 import LineItemOptions from "@modules/common/components/line-item-options"
 import LineItemPrice from "@modules/common/components/line-item-price"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { BagIcon } from "@modules/layout/components/nav-icons"
 import Thumbnail from "@modules/products/components/thumbnail"
 
 const CartDropdown = ({
@@ -81,7 +82,16 @@ const CartDropdown = ({
             className="hover:text-ui-fg-base"
             href="/cart"
             data-testid="nav-cart-link"
-          >{`Cart (${totalItems})`}</LocalizedClientLink>
+          >
+            <span className="relative flex items-center">
+              <BagIcon className="w-6 h-6" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1.5 -right-2 min-w-[1.05rem] h-[1.05rem] px-1 flex items-center justify-center rounded-full bg-ui-fg-base text-white text-[0.625rem] leading-none">
+                  {totalItems}
+                </span>
+              )}
+            </span>
+          </LocalizedClientLink>
         </Popover.Button>
         <Transition
           show={cartDropdownOpen}

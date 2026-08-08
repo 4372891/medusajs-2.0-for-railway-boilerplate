@@ -39,7 +39,7 @@ const SearchResultsTemplate = ({
           Clear
         </LocalizedClientLink>
       </div>
-      <div className="flex flex-col py-8 small:py-16 content-container">
+      <div className="flex flex-col py-6 small:py-10 content-container">
         {ids.length > 0 ? (
           <>
             <RefinementList sortBy={sortBy || "created_at"} search />

@@ -6,6 +6,7 @@ import { Text, clx, useToggleState } from "@medusajs/ui"
 import { Fragment } from "react"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { MenuIcon } from "@modules/layout/components/nav-icons"
 import { HttpTypes } from "@medusajs/types"
 
 const SideMenuItems = {
@@ -27,8 +28,9 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                 <Popover.Button
                   data-testid="nav-menu-button"
                   className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base"
+                  aria-label="Open menu"
                 >
-                  Menu
+                  <MenuIcon className="w-6 h-6" />
                 </Popover.Button>
               </div>
 
